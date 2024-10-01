@@ -29,7 +29,7 @@ public abstract class AuditableEntity {
 
   @LastModifiedDate
   @Column(columnDefinition = "DATETIME(6) DEFAULT CURRENT_TIMESTAMP(6)")
-  private LocalDateTime updatedAt;
+  private LocalDateTime modifiedAt;
 
   @CreatedBy
   @OneToOne
