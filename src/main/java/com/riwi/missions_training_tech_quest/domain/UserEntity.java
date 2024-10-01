@@ -1,5 +1,12 @@
 package com.riwi.missions_training_tech_quest.domain;
 
+import java.util.Collection;
+import java.util.Collections;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -19,7 +26,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity(name = "users")
-public class UserEntity extends AuditableEntity {
+public class UserEntity extends AuditableEntity implements UserDetails {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -27,7 +34,7 @@ public class UserEntity extends AuditableEntity {
   @Column(nullable = false)
   private String fullname;
 
-  @Column(nullable = false)
+  @Column(nullable = false, unique = true)
   private String email;
 
   @Column(nullable = false)
@@ -36,5 +43,30 @@ public class UserEntity extends AuditableEntity {
   @Enumerated(EnumType.STRING)
   @Column(nullable = false)
   private Roles role;
+
+  @Override
+  public String getUsername() {
+    return this.email;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    return Collections.singleton(new SimpleGrantedAuthority(this.role.name()));
+  }
+
+  @Override
+  public boolean isAccountNonExpired() {
+    return true;
+  }
+
+  @Override
+  public boolean isAccountNonLocked() {
+    return true;
+  }
+
+  @Override
+  public boolean isCredentialsNonExpired() {
+    return true;
+  }
 
 }
