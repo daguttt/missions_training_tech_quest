@@ -1,9 +1,9 @@
-package com.riwi.missions_training_tech_quest.infrastruture.controllers;
+package com.riwi.missions_training_tech_quest.infrastructure.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.riwi.missions_training_tech_quest.infrastruture.dtos.LoginUserDto;
-import com.riwi.missions_training_tech_quest.infrastruture.dtos.RegisterUserDto;
+import com.riwi.missions_training_tech_quest.infrastructure.dtos.LoginUserDto;
+import com.riwi.missions_training_tech_quest.infrastructure.dtos.RegisterUserDto;
 
 import jakarta.validation.Valid;
 

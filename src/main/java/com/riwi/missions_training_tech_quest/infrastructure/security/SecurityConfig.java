@@ -1,4 +1,4 @@
-package com.riwi.missions_training_tech_quest.infrastruture.security;
+package com.riwi.missions_training_tech_quest.infrastructure.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -34,8 +34,8 @@ public class SecurityConfig {
   }
 
   @Bean
-  public AuthenticationManager authenticationManager(
-      AuthenticationConfiguration authenticationConfiguration) throws Exception {
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+      throws Exception {
     return authenticationConfiguration.getAuthenticationManager();
   }
 
@@ -51,11 +51,10 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     return http.csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(request -> request
-            .requestMatchers(PUBLIC_ENDPOINTS).permitAll().anyRequest().authenticated())
+        .authorizeHttpRequests(
+            request -> request.requestMatchers(PUBLIC_ENDPOINTS).permitAll().anyRequest().authenticated())
         .authenticationProvider(authenticationProvider())
-        .sessionManagement(
-            sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .addFilterBefore(this.jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).build();
   }
 

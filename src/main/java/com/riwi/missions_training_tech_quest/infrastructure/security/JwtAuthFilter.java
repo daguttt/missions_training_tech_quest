@@ -1,4 +1,4 @@
-package com.riwi.missions_training_tech_quest.infrastruture.security;
+package com.riwi.missions_training_tech_quest.infrastructure.security;
 
 import java.io.IOException;
 
@@ -31,9 +31,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
   private HandlerExceptionResolver handlerExceptionResolver;
 
   @Override
-  protected void doFilterInternal(@NonNull HttpServletRequest request,
-      @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
-      throws ServletException, IOException {
+  protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+      @NonNull FilterChain filterChain) throws ServletException, IOException {
 
     final String authHeader = request.getHeader("Authorization");
 
@@ -52,8 +51,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
 
         if (this.jwtUtils.isTokenValid(jwt, userDetails)) {
-          UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-              userDetails, null, userDetails.getAuthorities());
+          UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null,
+              userDetails.getAuthorities());
 
           authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
           SecurityContextHolder.getContext().setAuthentication(authToken);

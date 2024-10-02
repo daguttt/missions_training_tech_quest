@@ -1,4 +1,4 @@
-package com.riwi.missions_training_tech_quest.infrastruture.security;
+package com.riwi.missions_training_tech_quest.infrastructure.security;
 
 import java.util.Date;
 import java.util.Map;
@@ -30,8 +30,7 @@ public class JwtUtils {
     return this.jwtExpiration;
   }
 
-  private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails,
-      long expiration) {
+  private String buildToken(Map<String, Object> extraClaims, UserDetails userDetails, long expiration) {
     return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + expiration))
@@ -69,8 +68,7 @@ public class JwtUtils {
   }
 
   private Claims extractAllClaims(String token) {
-    return Jwts.parserBuilder().setSigningKey(getSignInKey()).build().parseClaimsJws(token)
-        .getBody();
+    return Jwts.parserBuilder().setSigningKey(getSignInKey()).build().parseClaimsJws(token).getBody();
   }
 
   private Key getSignInKey() {

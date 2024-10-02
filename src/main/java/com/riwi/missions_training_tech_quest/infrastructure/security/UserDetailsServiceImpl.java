@@ -1,4 +1,4 @@
-package com.riwi.missions_training_tech_quest.infrastruture.security;
+package com.riwi.missions_training_tech_quest.infrastructure.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
