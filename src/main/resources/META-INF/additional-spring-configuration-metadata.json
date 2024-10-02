@@ -6,7 +6,7 @@
       "description": "A random 32 bytes string encoded in base64"
     },
     {
-      "name": "jwt.expiration",
+      "name": "jwt.expiration-time",
       "type": "java.lang.Long",
       "description": "The JWT's expiration time in miliseconds"
     }
