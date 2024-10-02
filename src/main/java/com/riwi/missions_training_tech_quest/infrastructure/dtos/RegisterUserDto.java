@@ -1,8 +1,8 @@
 package com.riwi.missions_training_tech_quest.infrastructure.dtos;
 
 import com.riwi.missions_training_tech_quest.domain.Roles;
+import com.riwi.missions_training_tech_quest.infrastructure.validators.enums.ValidEnum;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
@@ -21,14 +21,18 @@ public class RegisterUserDto {
   private String fullname;
 
   @NotBlank(message = "Email cannot be blank")
-  @Email(message = "Email must be valid")
+  @Pattern(
+      regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+      message = "Email must be valid")
   private String email;
 
   @NotBlank(message = "Password cannot be blank")
   @Pattern(regexp = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d @$!%*?&]{8,}$",
-      message = "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character.")
+      message = "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character")
   private String password;
 
-  private Roles role;
+  @NotBlank(message = "Role cannot be blank")
+  @ValidEnum(enumClass = Roles.class, message = "Role must be either 'STUDENT', 'TEACHER' or 'ADMIN")
+  private String role;
 
 }
