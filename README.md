@@ -10,7 +10,7 @@ https://github.com/daguttt/missions_training_tech_quest
 
 ## 1. Environment variables
 
-1. Copy the [`.env.example`](./src/main/resources/.env.example) file of the `resources/` folder and create the **`.env` file**  in the same folder (`resources/`) **replacing with real variables**.
+1. Copy the [`.env.example`](./src/main/resources/.env.example) file of the `resources/` folder in a **new `.env` file** in the same folder (`resources/`) **replacing the content with real variables**.
 
 2. The `JWT_SECRET_KEY` must be an HMAC hash string of 256 bits; otherwise, the token generation will throw an error. **Use [this website](https://www.devglan.com/online-tools/hmac-sha256-online?ref=blog.tericcabrel.com) to generate one**.
 
