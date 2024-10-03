@@ -3,6 +3,9 @@
 
 REST API that allows teachers train students through learning missions and assigned skills.
 
+# Repository URL
+https://github.com/daguttt/missions_training_tech_quest
+
 # Project Setup
 
 ## 1. Environment variables
