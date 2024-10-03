@@ -15,10 +15,13 @@ public class OpenApiConfig {
     @Value("${server.port}")
     private String serverPort;
 
+    @Value("${server.servlet.context-path}")
+    private String contextPath;
+
     @Bean
     public OpenAPI customOpenAPI() {
         // Create a dynamic server URL based on the server port
-        String localServerUrl = "http://localhost:" + serverPort;
+        String localServerUrl = String.format("http://localhost:%s%s", this.serverPort, this.contextPath);
 
         // Define the server for OpenAPI
         Server localServer = new Server().url(localServerUrl).description("Local Development Server");

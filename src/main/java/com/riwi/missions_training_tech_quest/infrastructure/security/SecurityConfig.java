@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-  private final String[] PUBLIC_ENDPOINTS = { "/auth/**", "/swagger-ui/**", "/v3/api-docs/**" };
+  private final String[] PUBLIC_ENDPOINTS = { "/auth/**", "/swagger-ui/**", "/api-docs/v3/**" };
 
   @Autowired
   private UserDetailsService userDetailsService;
