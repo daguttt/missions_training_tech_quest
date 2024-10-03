@@ -22,7 +22,6 @@ public class AuthService {
   public void registerUser(RegisterUserDto registerUserDto) {
     // Check if user with the email exists
     var foundUser = userRepository.findByEmail(registerUserDto.getEmail());
-
     if (foundUser.isPresent())
       throw new HttpClientErrorException(HttpStatus.CONFLICT,
           String.format("User with email '%s' already exists", registerUserDto.getEmail()));
