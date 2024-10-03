@@ -1,5 +1,7 @@
 package com.riwi.missions_training_tech_quest.application;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class AuthService {
 
   public void registerUser(RegisterUserDto registerUserDto) {
     // Check if user with the email exists
-    var foundUser = userRepository.findByEmail(registerUserDto.getEmail());
+    Optional<UserEntity> foundUser = userRepository.findByEmail(registerUserDto.getEmail());
     if (foundUser.isPresent())
       throw new HttpClientErrorException(HttpStatus.CONFLICT,
           String.format("User with email '%s' already exists", registerUserDto.getEmail()));
@@ -35,7 +37,7 @@ public class AuthService {
     userEntity.setModifiedBy(userEntity);
 
     var savedUserEntity = userRepository.save(userEntity);
-    var message = String.format("User with email %s registered successfully", savedUserEntity.getEmail());
+    String message = String.format("User with email %s registered successfully", savedUserEntity.getEmail());
     logger.info(message);
   }
 
