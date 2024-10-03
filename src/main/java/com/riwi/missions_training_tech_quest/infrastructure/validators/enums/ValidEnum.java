@@ -11,7 +11,7 @@ import jakarta.validation.Payload;
 
 @Documented
 @Constraint(validatedBy = EnumValidator.class)
-@Target({ ElementType.FIELD, ElementType.PARAMETER })
+@Target({ ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidEnum {
 
