@@ -9,6 +9,7 @@ import com.riwi.missions_training_tech_quest.infrastructure.dtos.RegisterUserDto
 import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class AuthController {
   @PostMapping("/register")
   public ResponseEntity<String> registerUser(@Valid @RequestBody RegisterUserDto registerUserDto) {
     authService.registerUser(registerUserDto);
-    return ResponseEntity.ok("User registered successfully");
+    return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
   }
 
   @PostMapping("/login")
